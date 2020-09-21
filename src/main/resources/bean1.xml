@@ -5,12 +5,12 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                             http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <bean id="account" class="myspring.beans.Account">
+    <bean id="account" class="com.myspring.beans.Account">
         <property name="id" value="1"/>
         <property name="user" ref="users"/>
         <property name="money" value="5"/>
     </bean>
-    <bean id="users" class="myspring.beans.Users">
+    <bean id="users" class="com.myspring.beans.Users">
         <property name="id" value="1"/>
         <property name="name" value="Lucy"/>
     </bean>

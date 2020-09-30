@@ -36,7 +36,7 @@ public class ProfileConf implements EmbeddedValueResolverAware {
     private String pwd;
 
     @Profile("Test")
-    @Bean("testDataSource")
+    @Bean
     public DataSource dataSourceTest() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setUsername(name);

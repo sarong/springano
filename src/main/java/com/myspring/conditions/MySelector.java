@@ -6,6 +6,6 @@ import org.springframework.core.type.AnnotationMetadata;
 public class MySelector implements ImportSelector {
 
     public String[] selectImports(AnnotationMetadata importingClassMetadata) {
-        return new String[]{"myspring.beans.Black","myspring.beans.Red"};
+        return new String[]{"com.myspring.beans.Black","com.myspring.beans.Red"};
     }
 }

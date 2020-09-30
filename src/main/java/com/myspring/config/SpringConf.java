@@ -55,9 +55,9 @@ import org.springframework.context.annotation.*;
 * */
 public class SpringConf {
 
-    @Conditional({WindowsCon.class})
+   /* @Conditional({WindowsCon.class})*/
     @Scope("singleton")
-    @Bean("acc")
+    @Bean("account")
     public Account accounto1() {
         System.out.println("accounto1加入到容器中");
         Users users = new Users(2, "Bruce");

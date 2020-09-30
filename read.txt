@@ -1,0 +1,52 @@
+
+AnnotationConfigApplicationContext context =
+    new AnnotationConfigApplicationContext(config.class);
+    config类：@Configuration表明这是一个配置类
+将组件加入到容器中：
+    1.给需要加入的容器组件加上@Compoment,@Service之类的注解，然后配置包扫描
+        @CompomnetScan 配置包扫描,@Fliter指定自定义包扫描规则
+    2.@Bean,导入第三方包里面的组件
+             {
+                //将指定的类加入到容器中：
+                    @Bean
+                    method()
+                //指定bean是单例还是多例:
+                    @Scope("singlen/prototype")默认是singlen单例
+
+                //按照条件将指定类加入到容器中:
+                    @Proflie("")//默认default所有的都加入
+                    @Bean
+                    method()
+             }
+    3.使用Spring提供的FactoryBean进行注册(实现FactoryBean接口):
+             a.获取到的是工场bean调用getObject获取到的对象Color， Object bean1 = context.getBean("colorFacttoryBean");
+             b.要获取到工场对象，需要加上&，获取到的是ColorFacttoryBean
+                Object bean4 = context.getBean("&colorFacttoryBean");
+    4.@Import，快速的给容器中导入一个组件
+             a.@Import(要导入的组件)；容器就会自动注册这个组件，id默认是全类名导入多个:@Import{Class1.class,Class2.class}
+             b.@ImportSelector:返回需要导入的组组件全类名数组
+组件赋值：@Value的几种使用方式，@PropertySource("")导入配置文件；
+         @Autowired,@Qualifier,@Resource(java自带),@Inject(需要导入javax.inject)
+
+组件注入：
+
+AOP：
+    @EnableAspectJAutoProx,@Before/@After/@AfterReturning/@AfterThrowing/@Around,@PointCut
+
+事务控制:
+    @EnableTransactionManagement
+    @Transactional
+    配置事务管理器
+
+Bean后置处理器：
+     BeanFactoryPostProcessor:
+           Spring容器标准初始化之后执行（BeanPostProcessor之前），此时bean还未创建；
+     BeanDefinitionRegistryPostProcessor:
+            BeanFactoryPostProcessor子接口，可以添加bean定义
+            BeanDefinetionRegistry,BeanDefinetionBuilder
+Spring容器初始化步骤:1) 加载保存和读取所有的bean配置,
+                  2) 按照配置创建bean
+
+Bean生命周期:
+             指定初始化和销毁的方法(bean实例创建完成之后调用初始化方法(init-method),IOC容器关闭之前调用销毁方法(destory-method));
+             InitializingBean（初始化设置值之后）,DisposableBean（销毁）,JSR250{@PostConstruct,@preDestory}
